@@ -3,6 +3,7 @@ import torch
 from torch import nn
 from torch.nn import Parameter
 import numpy as np
+from BlockWrapper import *
 
 
 class LSTMController(nn.Module):
