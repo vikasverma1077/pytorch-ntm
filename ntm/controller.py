@@ -15,10 +15,11 @@ class LSTMController(nn.Module):
         self.num_outputs = num_outputs
         self.num_layers = num_layers
 
-        self.lstm = nn.LSTM(input_size=num_inputs,
-                            hidden_size=num_outputs,
-                            num_layers=num_layers)
-
+        #self.lstm = nn.LSTM(input_size=num_inputs,
+        #                   hidden_size=num_outputs,
+        #                   num_layers=num_layers)
+                            
+        self.lstm = BlockWrapper(ntokens=10, nhid=num_outputs, dropout=0.0, num_blocks=4, update_topk=4)
         # The hidden state is a learned parameter
         self.lstm_h_bias = Parameter(torch.randn(self.num_layers, 1, self.num_outputs) * 0.05)
         self.lstm_c_bias = Parameter(torch.randn(self.num_layers, 1, self.num_outputs) * 0.05)
